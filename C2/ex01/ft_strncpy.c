@@ -6,11 +6,9 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 09:46:59 by imellali          #+#    #+#             */
-/*   Updated: 2024/07/01 16:28:32 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/03 09:12:21 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include <stdio.h>
 
 char	*ft_strncpy(char *dest, char *src, unsigned int n)
 {

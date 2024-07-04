@@ -6,13 +6,28 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/29 21:48:10 by imellali          #+#    #+#             */
-/*   Updated: 2024/07/01 19:01:48 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/03 16:52:58 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	isalphabe(char c)
 {
 	return ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'));
+}
+
+int	isdig(char c)
+{
+	return (c >= '0' && c <= '9');
+}
+
+int	isupp(char c)
+{
+	return (c >= 'A' && c <= 'Z');
+}
+
+int	islow(char c)
+{
+	return (c >= 'a' && c <= 'z');
 }
 
 char	*ft_strcapitalize(char *str)
@@ -24,17 +39,18 @@ char	*ft_strcapitalize(char *str)
 	found = 1;
 	while (str[i] != '\0')
 	{
-		if (found == 1 && (str[i] >= 'a' && str[i] <= 'z'))
+		if (found == 1 && isalphabe(str[i]))
 		{
-			str[i] -= 32;
+			if (islow(str[i]))
+				str[i] -= 32;
 			found = 0;
 		}
-		if (!(isalphabe(str[i])))
-			found = 1;
-		if (isalpabe(str[i]) && isalphabe(str[i - 1]) && str[i] >= 'A' && str[i] <= 'Z')
+		else if (found == 0 && isupp(str[i]))
 			str[i] += 32;
-		if (str[i] >= '0' && str[i] <= '9')
-			found = 0;	
+		else if (!isalphabe(str[i]) && !isdig(str[i]))
+			found = 1;
+		else if (isdig(str[i]))
+			found = 0;
 		i++;
 	}
 	return (str);

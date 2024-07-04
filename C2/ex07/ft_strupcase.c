@@ -6,17 +6,20 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/06/28 11:12:22 by imellali          #+#    #+#             */
-/*   Updated: 2024/06/28 11:16:00 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/03 09:27:05 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 char	*ft_strupcase(char *str)
 {
-	while (*str != '\0')
+	int	i;
+
+	i = 0;
+	while (str[i] != '\0')
 	{
-		if (*str >= 97 && *str <= 122)
-			*str -= 32;
-		str++;
+		if (str[i] >= 97 && str[i] <= 122)
+			str[i] -= 32;
+		i++;
 	}
 	return (str);
 }
