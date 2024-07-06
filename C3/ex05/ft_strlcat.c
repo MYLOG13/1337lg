@@ -6,13 +6,13 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/04 15:20:21 by imellali          #+#    #+#             */
-/*   Updated: 2024/07/04 16:01:49 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/04 18:02:58 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 unsigned int	ft_length(char *str)
 {
-	int	i;
+	unsigned int	i;
 
 	i = 0;
 	while (str[i] != '\0')
@@ -23,19 +23,19 @@ unsigned int	ft_length(char *str)
 unsigned int	ft_strlcat(char *dest, char *src, unsigned int size)
 {
 	unsigned int	i;
-	unsigned int	j;
 	unsigned int	destlen;
 	unsigned int	srclen;
 
 	destlen = ft_length(dest);
 	srclen = ft_length(src);
+	if (size == 0 || size <= destlen)
+		return (srclen + size);
 	i = 0;
-	j = 0;
-	while (i < size - 1 && src[j] != '\0' && dest[j] != '\0')
+	while (i < size - destlen - 1 && src[i] != '\0')
 	{
-		dest[i] = src[j];
+		dest[destlen + i] = src[i];
 		i++;
-		j++;
 	}
-	return (destlen + srclen);
+	dest[i + destlen] = '\0';
+	return (srclen + destlen);
 }
