@@ -6,14 +6,14 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/12 09:18:25 by imellali          #+#    #+#             */
-/*   Updated: 2024/07/12 10:22:35 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/13 16:33:37 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BOOLEAN_H
 # define FT_BOOLEAN_H
 
-#include <unistd.h>
+# include <unistd.h>
 
 # define TRUE 1
 
@@ -27,6 +27,6 @@
 
 # define EVEN(number) (number % 2 == 0)
 
-typedef int t_bool;
+typedef int	t_bool;
 
 #endif
