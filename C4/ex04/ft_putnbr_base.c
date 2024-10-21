@@ -6,23 +6,18 @@
 /*   By: imellali <imellali@student.1337.ma>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/07/07 10:05:56 by imellali          #+#    #+#             */
-/*   Updated: 2024/07/07 11:14:08 by imellali         ###   ########.fr       */
+/*   Updated: 2024/07/07 20:44:41 by imellali         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <unistd.h>
 
-void	fprint(char c)
+long	strln(char *str)
 {
-	write(1, &c, 1);
-}
-
-int	strln(char *str)
-{
-	int	i;
+	long	i;
 
 	i = 0;
-	while (str[i])
+	while (str[i] != '\0')
 		i++;
 	return (i);
 }
@@ -34,8 +29,10 @@ int	checksign(char *str)
 	i = 0;
 	while (str[i] != '\0')
 	{
-		if (str[i] == '+' || str[i] == '-')
-			reutrn (1);
+		if ((str[i] == '+') || (str[i] == '-'))
+			return (1);
+		if (str[i] <= 32 || str[i] >= 127)
+			return (1);
 		i++;
 	}
 	return (0);
@@ -61,11 +58,11 @@ int	duplicate(char *str)
 	return (0);
 }
 
-void	convert(int nbr, char *base)
+void	convert(long int nbr, char *base)
 {
-	int		i;
-	int		baselength;
-	char	digit[128];
+	long		i;
+	long		baselength;
+	char		digit[128];
 
 	i = 0;
 	baselength = strln(base);
@@ -77,23 +74,27 @@ void	convert(int nbr, char *base)
 	}
 	while (i != 0)
 	{
-		fprint(digit[i - 1]);
+		write(1, &digit[i - 1], 1);
 		i--;
 	}
 }
 
 void	ft_putnbr_base(int nbr, char *base)
 {
-	if (strln(base) < 2)
+	long	nm;
+
+	nm = nbr;
+	if ((strln(base) < 2) || (checksign(base) == 1) || (duplicate(base) == 1))
 		return ;
-	if (checksign(base) == 1)
+	if (nbr == 0)
+	{
+		write(1, "0", 1);
 		return ;
-	if (duplicate(base) == 1)
-		return ;
+	}
 	if (nbr < 0)
 	{
-		fprint('-');
-		nbr = -nbr;
+		write(1, "-", 1);
+		nm *= -1;
 	}
-	convert(nbr, base);
+	convert(nm, base);
 }
